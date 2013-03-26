@@ -27,7 +27,7 @@ Usage
 -----
 
 Each cache file contains a single dictionary, acting as the namespace
-for that cache. Within the file, you can set and retrieve any ``key:value``
+for that cache. Within the file, you can set and retrieve any ``key : value``
 pairs as needed.
 
 When setting a key, you must give a ``ttl`` value, or time to live, in seconds.
@@ -57,20 +57,33 @@ Setting a key and value:
 
     simple_cache.save_key(filename, key, value, ttl)
 
-Retrieving a value::
+Retrieving a value:
+
+::
+
     simple_cache.load_key(filename, key)
 
-Pruning all expired items in a file::
+Pruning all expired items in a file:
+
+::
+
     simple_cache.prune_cache(filename)
 
 Loading the whole cache dictionary from a file (possibly
-for debugging or introspection)::
+for debugging or introspection):
+
+::
+
     simple_cache.read_cache(filename)
 
 Writing a whole dictionary to a file, **overwriting any
 previous data in the file** (possibly for initalizing a 
-cache by batch writing multiple items)::
+cache by batch writing multiple items):
+
+::
+
     simple_cache.write_cache(filename, cache)
+
 
 ``filename`` is a string containing a valid filename
 
