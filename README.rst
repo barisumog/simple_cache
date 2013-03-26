@@ -8,8 +8,8 @@ A simple caching utility in Python 3.
 
 It was written as an easy way to cache http requests for
 local use. It can possibly be used for caching any data,
-as long as the ``key``s are hashable and the ``value``s are
-picklable.
+as long as the ``key`` s are hashable and the ``value`` s are
+pickleable.
 
 
 Requirements
@@ -41,7 +41,7 @@ When setting a key, you must give a ``ttl`` value, or time to live, in seconds.
 This value determines the amount of time that value will be considered valid.
 After that, the value is considered expired, and will not be returned.
 
-Calls to a non-existant cache file, a non-existant key, or an expired key
+Calls to a non-existent cache file, a non-existent key, or an expired key
 all  return ``None``.
 
 You can set a key with a new value before or after it expires.
