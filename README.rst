@@ -51,6 +51,7 @@ API
 
     import simple_cache
 
+
 Setting a key and value::
     simple_cache.save_key(filename, key, value, ttl)
 
