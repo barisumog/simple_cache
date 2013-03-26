@@ -21,6 +21,13 @@ Only standard libraries are used, so there are no dependencies.
 Installing
 ----------
 
+::
+
+    pip install simple_cache
+
+
+Or if you like, you can just download the ``simple_cache.py`` file and
+import it locally.
 
 
 Usage
