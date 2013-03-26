@@ -1,0 +1,87 @@
+simple_cache
+==================
+
+A simple caching utility in Python 3.
+
+**simple_cache** uses the ``pickle`` module to write any
+``key : value`` pairs to a file on disk.
+
+It was written as an easy way to cache http requests for
+local use. It can possibly be used for caching any data,
+as long as the ``key``s are hashable and the ``value``s are
+picklable.
+
+
+Requirements
+------------
+
+Only standard libraries are used, so there are no dependencies.
+
+
+Installing
+----------
+
+
+
+Usage
+-----
+
+Each cache file contains a single dictionary, acting as the namespace
+for that cache. Within the file, you can set and retrieve any ``key:value``
+pairs as needed.
+
+When setting a key, you must give a ``ttl`` value, or time to live, in seconds.
+This value determines the amount of time that value will be considered valid.
+After that, the value is considered expired, and will not be returned.
+
+Calls to a non-existant cache file, a non-existant key, or an expired key
+all  return ``None``.
+
+You can set a key with a new value before or after it expires.
+
+Whenever you ask the cache for a value, and it happens to be expired, the item
+is deleted from the file. You can also manually ask the cache file at any time,
+to prune all currently expired items.
+
+
+API
+---
+
+::
+    import simple_cache
+
+Setting a key and value::
+    simple_cache.save_key(filename, key, value, ttl)
+
+Retrieving a value::
+    simple_cache.load_key(filename, key)
+
+Pruning all expired items in a file::
+    simple_cache.prune_cache(filename)
+
+Loading the whole cache dictionary from a file (possibly
+for debugging or introspection)::
+    simple_cache.read_cache(filename)
+
+Writing a whole dictionary to a file, **overwriting any
+previous data in the file** (possibly for initalizing a 
+cache by batch writing multiple items)::
+    simple_cache.write_cache(filename, cache)
+
+``filename`` is a string containing a valid filename
+
+``key`` is any hashable type, and must be unique within
+each cache file (otherwise will overwrite)
+
+``value`` is any Python type supported by the ``pickle`` module
+
+``ttl`` is an integer or float, denoting the number of seconds
+that the item will remain valid before it expires
+
+``cache`` is a dictionary containing the key:value pairs
+
+
+License
+-------
+
+**simple_cache** is open sourced under GPLv3.
