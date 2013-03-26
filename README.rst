@@ -48,6 +48,7 @@ API
 ---
 
 ::
+
     import simple_cache
 
 Setting a key and value::
