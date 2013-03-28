@@ -13,7 +13,7 @@ local use. It can possibly be used for caching any data,
 as long as the ``key`` s are hashable and the ``value`` s are
 pickleable.
 
-It also provides a decorator to cache functions calls directly.
+It also provides a decorator to cache function calls directly.
 
 
 Requirements
@@ -73,7 +73,14 @@ the default values.*
 
 ::
 
-    @simple_cache.cache_it(filename="simple.cache", ttl=3600)
+    @simple_cache.cache_it()    # uses defaults: filename = "simple.cache", ttl = 3600
+    def some_function(*args, **kwargs):
+        # body
+        return value
+
+::
+
+    @simple_cache.cache_it(filename="some_function.cache", ttl=120)
     def some_function(*args, **kwargs):
         # body
         return value
