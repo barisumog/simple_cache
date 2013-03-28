@@ -62,14 +62,17 @@ API
 
     import simple_cache
 
-Using the decorator format:
+**Using the decorator format:**
 
-*Using the same cache file for multiple functions with a decorator might
+Using the same cache file for multiple functions with a decorator might
 cause problems. The decorator uses the *args, **kwargs of the function as a key,
-so calling to different functions with the same arguments will cause a clash.*
+so calling to different functions with the same arguments will cause a clash.
 
-*You can specify a custom filename (and ttl) with the decorator format, overriding
-the default values.*
+You can specify a custom filename (and ttl) with the decorator format, overriding
+the default values.
+
+*Please note that the decorator format only supports args and kwargs with **immutable** types.
+If one of your arguments is mutable (e.g. a list, or a dictionary), the decorator won't work.*
 
 ::
 
@@ -85,6 +88,8 @@ the default values.*
         # body
         return value
 
+
+**Using the module functions:**
 
 Setting a key and value:
 
