@@ -71,7 +71,7 @@ so calling to different functions with the same arguments will cause a clash.
 You can specify a custom filename (and ttl) with the decorator format, overriding
 the default values.
 
-*Please note that the decorator format only supports args and kwargs with **immutable** types.
+*Please note that the decorator format only supports args and kwargs with* **immutable** *types.
 If one of your arguments is mutable (e.g. a list, or a dictionary), the decorator won't work.*
 
 ::
