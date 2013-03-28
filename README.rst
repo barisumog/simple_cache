@@ -1,5 +1,4 @@
 
-============
 simple_cache
 ============
 
@@ -65,7 +64,7 @@ API
 **Using the decorator format:**
 
 Using the same cache file for multiple functions with a decorator might
-cause problems. The decorator uses the *args, **kwargs of the function as a key,
+cause problems. The decorator uses the ``*args, **kwargs`` of the function as a key,
 so calling to different functions with the same arguments will cause a clash.
 
 You can specify a custom filename (and ttl) with the decorator format, overriding
