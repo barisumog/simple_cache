@@ -80,4 +80,5 @@ def test_decorator():
     t0 = simple_cache.time.time()
     y = adder(3, c=2, b=5)
     t1 = simple_cache.time.time()
+    assert x == y
     assert t1 - t0 < 2
