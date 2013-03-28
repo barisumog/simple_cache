@@ -63,3 +63,21 @@ def test_prune():
     simple_cache.prune_cache(filename)
     cache = simple_cache.read_cache(filename)
     assert cache == {}
+
+
+def test_tuple_kwargs():
+    d1 = {"a": 1, "b": 2, "c": "3"}
+    d2 = {"b": 2, "c": "3", "a": 1}
+    assert simple_cache.tuple_kwargs(d1) == simple_cache.tuple_kwargs(d2)
+
+
+def test_decorator():
+    @simple_cache.cache_it(filename="testing.cache", ttl=10)
+    def adder(a, b=1, c=1):
+        simple_cache.time.sleep(3)
+        return a + b + c
+    x = adder(3, b=5, c=2)
+    t0 = simple_cache.time.time()
+    y = adder(3, c=2, b=5)
+    t1 = simple_cache.time.time()
+    assert t1 - t0 < 2

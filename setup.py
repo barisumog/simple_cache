@@ -8,7 +8,7 @@ with open('README.rst') as file:
     long_description = file.read()
 
 setup(name='simple_cache',
-      version='0.2',
+      version='0.21',
       description='A simple caching utility in Python 3',
       long_description=long_description,
       author='barisumog',

@@ -1,5 +1,7 @@
+
+============
 simple_cache
-==================
+============
 
 A simple caching utility in Python 3.
 
@@ -10,6 +12,8 @@ It was written as an easy way to cache http requests for
 local use. It can possibly be used for caching any data,
 as long as the ``key`` s are hashable and the ``value`` s are
 pickleable.
+
+It also provides a decorator to cache functions calls directly.
 
 
 Requirements
@@ -57,6 +61,23 @@ API
 ::
 
     import simple_cache
+
+Using the decorator format:
+
+*Using the same cache file for multiple functions with a decorator might
+cause problems. The decorator uses the *args, **kwargs of the function as a key,
+so calling to different functions with the same arguments will cause a clash.*
+
+*You can specify a custom filename (and ttl) with the decorator format, overriding
+the default values.*
+
+::
+
+    @simple_cache.cache_it(filename="simple.cache", ttl=3600)
+    def some_function(*args, **kwargs):
+        # body
+        return value
+
 
 Setting a key and value:
 

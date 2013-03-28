@@ -80,3 +80,23 @@ def prune_cache(filename):
         if now > expiry:
             del cache[key]
     write_cache(filename, cache)
+
+
+def tuple_kwargs(kwargs):
+    """Convert a flat dictionary to a tuple."""
+    return tuple(sorted(kwargs.items()))
+
+
+def cache_it(filename="simple.cache", ttl=3600):
+    """Decorator for wrapping simple cache around functions."""
+    def decorate(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            key = (args, tuple_kwargs(kwargs))
+            value = load_key(filename, key)
+            if value is None:
+                value = func(*args, **kwargs)
+                save_key(filename, key, value, ttl)
+            return value
+        return wrapper
+    return decorate
