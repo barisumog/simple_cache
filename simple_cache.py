@@ -24,6 +24,11 @@ import pickle
 import time
 from functools import wraps
 
+try:
+    file_error = FileNotFoundError
+except NameError:
+    file_error = IOError
+    from errno import ENOENT
 
 #
 # Implements a simple caching utility via pickling to disk
@@ -41,7 +46,10 @@ def read_cache(filename):
     try:
         with open(filename, "r+b") as file:
             cache = pickle.load(file)
-    except FileNotFoundError:
+    except file_error as e:
+        if file_error is IOError:
+            if e.errno != ENOENT:
+                raise
         cache = {}
     return cache
 
